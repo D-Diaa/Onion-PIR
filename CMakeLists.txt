@@ -42,8 +42,8 @@ if(NFL_OPTIMIZED)
     endif()
 endif()
 
-add_library(OnionPIR SHARED external_prod.cpp external_prod.h waksman.cpp waksman.h util.h pir_server.cpp pir_server.h pir.cpp pir.h pir_client.cpp pir_client.h)
+add_library(OnionPIR external_prod.cpp external_prod.h waksman.cpp waksman.h util.h pir_server.cpp pir_server.h pir.cpp pir.h pir_client.cpp pir_client.h)
+target_link_libraries(OnionPIR SEAL::seal nfllib)
 
 add_executable(main main.cpp)
-
-target_link_libraries(main PRIVATE SEAL::seal nfllib OnionPIR)
+target_link_libraries(main OnionPIR)
